@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vinci helps small and medium businesses automate repetitive customer-facing and operational work with practical AI workflows." />
+  <title>Vinci | AI Automation for Business</title>
+  <style>
+    :root{
+      --teal:#08AEB2;
+      --teal-700:#078b8e;
+      --teal-050:#edfafa;
+      --ink:#0f1720;
+      --muted:#66717d;
+      --deep:#06383D;
+      --line:#dfe7e8;
+      --panel:#ffffff;
+      --wash:#f6f9f9;
+      --shadow:0 18px 50px rgba(6,56,61,.08);
+      --radius:18px;
+      --radius-sm:12px;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased}
+    a{text-decoration:none;color:inherit}
+    button,a{outline:none}
+    :focus-visible{outline:3px solid rgba(8,174,178,.4);outline-offset:3px;border-radius:10px}
+    .container{width:min(calc(100% - 40px),var(--max));margin:0 auto;position:relative;z-index:2}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid rgba(8,174,178,.22);background:rgba(8,174,178,.06);color:var(--deep);border-radius:999px;font-size:.92rem;font-weight:850;letter-spacing:.02em}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 5px rgba(8,174,178,.1)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:54px;padding:0 24px;border-radius:14px;font-weight:850;font-size:1rem;transition:.2s ease;border:1px solid transparent;cursor:pointer}
+    .btn-primary{background:var(--teal);color:white;box-shadow:0 10px 24px rgba(8,174,178,.2)}
+    .btn-primary:hover{background:var(--teal-700);transform:translateY(-1px)}
+    .btn-secondary{background:white;border-color:var(--line);color:var(--deep)}
+    .btn-secondary:hover{border-color:#c8d5d6;background:#fbfdfd}
+    .section-title{font-size:clamp(2.45rem,5vw,4.2rem);line-height:.98;letter-spacing:-.06em;margin:14px 0 16px;font-weight:950;max-width:900px}
+    .section-copy{color:var(--muted);font-size:1.04rem;max-width:650px;margin:0 auto}
+    #hero{position:relative;overflow:hidden;background:radial-gradient(circle at 82% 16%,rgba(8,174,178,.12),transparent 28%),linear-gradient(180deg,#fff 0%,#f8fbfb 100%);border-bottom:1px solid #eef3f3}
+    #hero::before{content:"";position:absolute;inset:0;opacity:.22;background-image:linear-gradient(to right,rgba(6,56,61,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(6,56,61,.05) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(to bottom,black 0%,transparent 85%);pointer-events:none}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+    .brand{display:flex;align-items:center;gap:10px;font-size:1.24rem;font-weight:950;color:var(--deep);letter-spacing:-.025em}
+    .mark{width:34px;height:34px;border-radius:10px;background:var(--deep);display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+    .mark svg{width:22px;height:22px}
+    .nav-links{display:flex;align-items:center;gap:22px}
+    .nav-links a:not(.btn){font-size:.92rem;color:#536068;font-weight:650}
+    .nav-links a:not(.btn):hover{color:var(--deep)}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:68px;align-items:center;padding:70px 0 92px}
+    .hero-copy h1{font-size:clamp(3.7rem,7.2vw,6.8rem);line-height:.91;letter-spacing:-.075em;margin:18px 0 22px;font-weight:950;max-width:780px}
+    .hero-copy h1 span{background:linear-gradient(90deg,var(--teal),#4f8ff7);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-copy p{margin:0;font-size:1.08rem;color:#5f6b73;max-width:620px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .proof-strip{display:flex;flex-wrap:wrap;gap:18px 22px;margin-top:28px;color:#66717d;font-size:.88rem}
+    .proof-item{display:flex;align-items:center;gap:8px}
+    .proof-icon{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#eaf8f8;color:var(--teal-700);font-weight:900;font-size:.76rem}
+    .video-card{position:relative;border:1px solid rgba(6,56,61,.1);border-radius:24px;background:white;padding:14px;box-shadow:var(--shadow);transform:rotate(.35deg)}
+    .video-shell{aspect-ratio:16/10;border-radius:17px;overflow:hidden;position:relative;background:linear-gradient(135deg,rgba(6,56,61,.96),rgba(6,56,61,.72)),#0b5056;display:grid;place-items:center}
+    .video-shell::before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;border:1px solid rgba(255,255,255,.12);top:-70px;right:-90px}
+    .video-shell::after{content:"";position:absolute;width:170px;height:170px;background:rgba(8,174,178,.18);border-radius:34px;left:-30px;bottom:-45px;transform:rotate(24deg)}
+    .video-content{position:relative;z-index:2;text-align:center;color:white;padding:24px}
+    .play{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;background:var(--teal);box-shadow:0 12px 40px rgba(0,0,0,.24)}
+    .play svg{width:24px;height:24px;margin-left:4px}
+    .video-content strong{display:block;font-size:1.1rem}
+    .video-content span{display:block;font-size:.9rem;opacity:.72;margin-top:4px}
+    .video-caption{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 6px 4px;color:#67727a;font-size:.82rem}
+    #problem{padding:100px 0;background:white;position:relative}
+    .center{text-align:center}
+    .center .section-title{margin-left:auto;margin-right:auto}
+    .problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+    .problem-card{border:1px solid var(--line);border-radius:var(--radius);background:white;padding:30px;box-shadow:0 8px 28px rgba(15,23,32,.04);transition:.2s ease}
+    .problem-card:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(15,23,32,.07);border-color:#cfdddd}
+    .icon-box{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:var(--teal-050);color:var(--teal-700);margin-bottom:22px}
+    .icon-box svg{width:22px;height:22px}
+    .problem-card h3{margin:0 0 10px;font-size:1.14rem;letter-spacing:-.02em}
+    .problem-card p{margin:0;color:#69747b;font-size:.96rem}
+    #solution{position:relative;overflow:hidden;padding:104px 0 0;background:var(--wash);border-top:1px solid #edf2f2}
+    #solution::before{content:"";position:absolute;width:540px;height:540px;border-radius:50%;border:1px solid rgba(8,174,178,.12);top:-280px;left:-140px}
+    .solution-intro{display:block;text-align:center;margin-bottom:44px}
+    .solution-intro .section-copy{margin:0 auto;max-width:650px}
+    .solution-intro .section-title{margin-left:auto;margin-right:auto;margin-bottom:16px;max-width:900px}
+    .capabilities{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:62px}
+    .capability{background:white;border:1px solid var(--line);border-radius:16px;padding:22px 20px;min-height:190px}
+    .capability small{color:var(--teal-700);font-weight:800;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}
+    .capability h3{font-size:1rem;margin:14px 0 8px;letter-spacing:-.015em}
+    .capability p{margin:0;color:#6d787f;font-size:.88rem}
+    .booking-wrap{display:grid;grid-template-columns:.84fr 1.16fr;gap:24px;align-items:stretch;margin-bottom:74px}
+    .cta-panel{background:var(--deep);color:white;border-radius:22px;padding:38px;position:relative;overflow:hidden;min-height:460px;display:flex;flex-direction:column;justify-content:space-between}
+    .cta-panel::after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;border:1px solid rgba(255,255,255,.12);right:-80px;bottom:-90px}
+    .cta-panel .eyebrow{align-self:flex-start;color:#dffafa;border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.06)}
+    .cta-panel h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.04;letter-spacing:-.05em;margin:20px 0 16px;max-width:520px}
+    .cta-panel p{color:rgba(255,255,255,.74);margin:0;max-width:520px}
+    .cta-bottom{position:relative;z-index:2}
+    .cta-bottom .btn{margin-top:24px;background:white;color:var(--deep)}
+    .cta-bottom .btn:hover{background:#f3fbfb}
+    .calendar-card{background:white;border:1px solid var(--line);border-radius:22px;padding:0;overflow:hidden;box-shadow:0 10px 34px rgba(6,56,61,.05)}
+    .calendly-frame{display:block;width:100%;height:700px;border:0;background:#fff}
+    .footer{border-top:1px solid #dce6e7;padding:24px 0 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:#7a858c;font-size:.84rem}
+    .footer .brand{font-size:1rem}
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+    .reveal.visible{opacity:1;transform:none}
+    @media (max-width:980px){
+      .hero-grid,.booking-wrap{grid-template-columns:1fr}
+      .hero-grid{gap:38px;padding:52px 0 74px}
+      .video-card{max-width:760px}
+      .problem-grid{grid-template-columns:1fr}
+      .capabilities{grid-template-columns:repeat(2,1fr)}
+      .cta-panel{min-height:360px}
+    }
+    @media (max-width:720px){
+      .container{width:min(calc(100% - 28px),var(--max))}
+      .nav{height:68px}
+      .nav-links a:not(.btn){display:none}
+      .nav-links{gap:10px}
+      .nav .btn{min-height:40px;padding:0 13px;font-size:.86rem}
+      .hero-copy h1{font-size:clamp(2.7rem,14vw,4.2rem)}
+      .hero-copy p{font-size:1.02rem}
+      .hero-actions .btn{width:100%}
+      .proof-strip{display:grid;grid-template-columns:1fr}
+      #problem{padding:78px 0}
+      #solution{padding-top:78px}
+      .capabilities{grid-template-columns:1fr}
+      .cta-panel{padding:28px}
+      .calendar-card{width:100%}
+      .calendly-frame{height:720px}
+      .footer{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <section id="hero">
+    <div class="container">
+      <header class="nav">
+        <a class="brand" href="#hero" aria-label="Vinci home">
+          <span class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 6.5 12 18 19 6.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 6.5 12 13l4-6.5" stroke="#08AEB2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Vinci
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#problem">Why automate</a>
+          <a href="#solution">What we do</a>
+          <a class="btn btn-primary" href="#booking">Book a Free Strategy Call</a>
+        </nav>
+      </header>
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="dot"></span> AI automation for growing businesses</div>
+          <h1>Stop losing time to work AI can <span>handle.</span></h1>
+          <p>Vinci builds AI automations that answer, capture, route, schedule, and follow up, so your team can focus on work that needs people.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#booking">Book a Demo <span aria-hidden="true">→</span></a>
+            <a class="btn btn-secondary" href="#problem">See How It Works ↓</a>
+          </div>
+          <div class="proof-strip" aria-label="Service principles">
+            <div class="proof-item"><span class="proof-icon">✓</span> Built around your workflow</div>
+            <div class="proof-item"><span class="proof-icon">✓</span> Human handoff built in</div>
+            <div class="proof-item"><span class="proof-icon">✓</span> Connects with your tools</div>
+          </div>
+        </div>
+        <div class="video-card reveal">
+          <!-- YOUTUBE VIDEO PLACEHOLDER -->
+          <div class="video-shell" role="img" aria-label="Future YouTube demo video placeholder">
+            <div class="video-content">
+              <div class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5.8v12.4L18 12 8 5.8Z" fill="white"/></svg></div>
+              <strong>AI Receptionist Demo</strong>
+              <span>Video placeholder</span>
+            </div>
+          </div>
+          <div class="video-caption">
+            <span>See how an automated customer interaction could work</span>
+            <span>Demo coming soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="problem">
+    <div class="container">
+      <div class="center reveal">
+        <div class="eyebrow"><span class="dot"></span> WHERE YOUR TEAM LOSES TIME</div>
+        <h2 class="section-title">Your team should not spend the day doing the same work twice.</h2>
+        <p class="section-copy">The biggest automation opportunities are often the simple, repetitive tasks hiding in plain sight.</p>
+      </div>
+      <div class="problem-grid">
+        <article class="problem-card reveal">
+          <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7.5 4.5h9M6 7.5h12v9H6z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 16.5v2m6-2v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h3>Enquiries arrive while your team is busy</h3>
+          <p>Calls and requests keep arriving, even when your team is already occupied.</p>
+        </article>
+        <article class="problem-card reveal">
+          <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 5h12v11H9l-3 3V5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 9h6M9 12h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h3>Routine interactions consume staff time</h3>
+          <p>The same questions, scheduling steps, and data collection repeat all day.</p>
+        </article>
+        <article class="problem-card reveal">
+          <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 7h10M7 17h10M8.5 5.5 7 7l1.5 1.5M15.5 15.5 17 17l-1.5 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 12h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h3>Information moves manually between people and systems</h3>
+          <p>One enquiry can create a chain of manual follow-ups, handoffs, and data entry.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section id="solution">
+    <div class="container">
+      <div class="solution-intro reveal">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> HOW VINCI AUTOMATES THE WORK</div>
+          <h2 class="section-title">Automate the repeatable. Keep people on the valuable.</h2>
+        </div>
+        <p class="section-copy">Vinci turns repeatable business workflows into AI-powered processes that respond, capture, route, and hand off work automatically.</p>
+      </div>
+      <div class="capabilities">
+        <article class="capability reveal"><small>01</small><h3>Respond to enquiries</h3><p>Respond instantly to supported inbound calls and enquiries.</p></article>
+        <article class="capability reveal"><small>02</small><h3>Handle routine questions</h3><p>Answer common questions using approved business information.</p></article>
+        <article class="capability reveal"><small>03</small><h3>Capture customer information</h3><p>Capture contact details, intent, and relevant context.</p></article>
+        <article class="capability reveal"><small>04</small><h3>Support scheduling</h3><p>Move suitable conversations directly into booking workflows.</p></article>
+        <article class="capability reveal"><small>05</small><h3>Connect with your workflow</h3><p>Send the right information to the right person or system.</p></article>
+      </div>
+      <div class="booking-wrap" id="booking">
+        <div class="cta-panel reveal">
+          <div>
+            <div class="eyebrow"><span class="dot"></span> Start with one useful workflow</div>
+            <h2>See what Vinci could take off your team's plate.</h2>
+            <p>Book a free 30-minute strategy call and we'll map one workflow worth automating first.</p>
+          </div>
+          <div class="cta-bottom"><a class="btn" href="#calendly-placeholder">Book a Free Strategy Call</a></div>
+        </div>
+        <div class="calendar-card" id="calendly-placeholder">
+          <iframe class="calendly-frame" src="https://calendly.com/vincilabs26/30min" title="Book a 30-minute call with Vinci" loading="eager" allow="camera; microphone; fullscreen; payment" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+      <footer class="footer">
+        <a class="brand" href="#hero">
+          <span class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 6.5 12 18 19 6.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 6.5 12 13l4-6.5" stroke="#08AEB2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Vinci
+        </a>
+        <div>AI automation for growing businesses.</div>
+      </footer>
+    </div>
+  </section>
+  <script>
+    const observer=new IntersectionObserver((entries)=>{entries.forEach((entry)=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.12});
+    document.querySelectorAll('.reveal').forEach((el)=>observer.observe(el));
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('.reveal').forEach((el)=>el.classList.add('visible'))}
+  </script>
+</body>
+</html>
