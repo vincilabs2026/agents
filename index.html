@@ -295,7 +295,7 @@
 
           <!-- ELEVENLABS AGENT WIDGET SLOT -->
           <div class="agent-widget-slot" id="agent-widget-slot">
-            ElevenLabs agent widget will appear here once the Agent ID is connected.
+            <elevenlabs-convai agent-id="agent_9801m4qkx2spfp0bs2tekp2b9nj3"></elevenlabs-convai>
           </div>
 
           <div class="booking-result" id="booking-result" aria-live="polite">
@@ -340,6 +340,29 @@
     document.querySelectorAll('.reveal').forEach((el)=>observer.observe(el));
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('.reveal').forEach((el)=>el.classList.add('visible'))}
 
+    const widget=document.querySelector("elevenlabs-convai");
+    if(widget){
+      widget.addEventListener("elevenlabs-convai:call",(event)=>{
+        event.detail.config.clientTools={
+          showBookingConfirmation:({
+            customer_name,
+            phone,
+            service_address,
+            issue,
+            appointment_time
+          })=>{
+            return window.showBookingConfirmationUI({
+              customer_name,
+              phone,
+              service_address,
+              issue,
+              appointment_time
+            });
+          }
+        };
+      });
+    }
+
     window.showBookingConfirmationUI = function(data){
       const result=document.getElementById('booking-result');
       const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value||'Not provided'};
@@ -355,5 +378,6 @@
       return {success:true,message:'Booking confirmation displayed successfully'};
     };
   </script>
+  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 </body>
 </html>
