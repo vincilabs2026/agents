@@ -106,6 +106,19 @@
     .cta-bottom .btn:hover{background:#f3fbfb}
     .calendar-card{background:white;border:1px solid var(--line);border-radius:22px;padding:0;overflow:hidden;box-shadow:0 10px 34px rgba(6,56,61,.05)}
     .calendly-frame{display:block;width:100%;height:700px;border:0;background:#fff}
+    .agent-demo-wrap{margin:0 0 74px}
+    .agent-demo-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 10px 34px rgba(6,56,61,.05)}
+    .agent-demo-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:18px}
+    .agent-demo-head h3{margin:0;font-size:1.35rem;letter-spacing:-.025em;color:var(--deep)}
+    .agent-demo-head p{margin:6px 0 0;color:var(--muted);font-size:.95rem;max-width:650px}
+    .agent-widget-slot{border:1px dashed #b9cacc;border-radius:16px;background:#fbfdfd;padding:24px;text-align:center;color:#6b777d}
+    .booking-result{display:none;margin-top:18px;border:1px solid rgba(8,174,178,.28);background:var(--teal-050);border-radius:16px;padding:20px}
+    .booking-result.visible{display:block}
+    .booking-result h4{margin:0 0 14px;color:var(--deep);font-size:1.05rem}
+    .booking-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px}
+    .booking-field{min-width:0}
+    .booking-field small{display:block;color:#6a767d;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+    .booking-field span{display:block;color:var(--ink);font-weight:700;word-break:break-word}
     .footer{border-top:1px solid #dce6e7;padding:24px 0 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:#7a858c;font-size:.84rem}
     .footer .brand{font-size:1rem}
     .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
@@ -137,6 +150,7 @@
       .cta-panel{padding:28px}
       .calendar-card{width:100%}
       .calendly-frame{height:720px}
+      .booking-grid{grid-template-columns:1fr}
       .footer{flex-direction:column;align-items:flex-start}
     }
   </style>
@@ -270,6 +284,33 @@
         <article class="capability reveal"><small>04</small><h3>Support scheduling</h3><p>Move suitable conversations directly into booking workflows.</p></article>
         <article class="capability reveal"><small>05</small><h3>Connect with your workflow</h3><p>Send the right information to the right person or system.</p></article>
       </div>
+      <div class="agent-demo-wrap" id="agent-demo">
+        <div class="agent-demo-card reveal">
+          <div class="agent-demo-head">
+            <div>
+              <h3>Talk to the AI receptionist</h3>
+              <p>Use the live agent here. When a booking is completed, the confirmation will appear below.</p>
+            </div>
+          </div>
+
+          <!-- ELEVENLABS AGENT WIDGET SLOT -->
+          <div class="agent-widget-slot" id="agent-widget-slot">
+            ElevenLabs agent widget will appear here once the Agent ID is connected.
+          </div>
+
+          <div class="booking-result" id="booking-result" aria-live="polite">
+            <h4>Appointment booked</h4>
+            <div class="booking-grid">
+              <div class="booking-field"><small>Name</small><span id="booking-name">—</span></div>
+              <div class="booking-field"><small>Phone</small><span id="booking-phone">—</span></div>
+              <div class="booking-field"><small>Address</small><span id="booking-address">—</span></div>
+              <div class="booking-field"><small>Issue</small><span id="booking-issue">—</span></div>
+              <div class="booking-field"><small>Time</small><span id="booking-time">—</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="booking-wrap" id="booking">
         <div class="cta-panel reveal">
           <div>
@@ -298,6 +339,21 @@
     const observer=new IntersectionObserver((entries)=>{entries.forEach((entry)=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.12});
     document.querySelectorAll('.reveal').forEach((el)=>observer.observe(el));
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('.reveal').forEach((el)=>el.classList.add('visible'))}
+
+    window.showBookingConfirmationUI = function(data){
+      const result=document.getElementById('booking-result');
+      const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value||'Not provided'};
+      set('booking-name',data?.customer_name);
+      set('booking-phone',data?.phone);
+      set('booking-address',data?.service_address);
+      set('booking-issue',data?.issue);
+      set('booking-time',data?.appointment_time);
+      if(result){
+        result.classList.add('visible');
+        result.scrollIntoView({behavior:'smooth',block:'nearest'});
+      }
+      return {success:true,message:'Booking confirmation displayed successfully'};
+    };
   </script>
 </body>
 </html>
