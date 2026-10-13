@@ -363,6 +363,26 @@
       });
     }
 
+    // DEMO_BOOKING_SHORTCUT
+    document.addEventListener('keydown', (event) => {
+      if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'b') {
+        event.preventDefault();
+        window.showBookingConfirmationUI({
+          customer_name: 'Mohammad Mansoor',
+          phone: '555-013-4821',
+          service_address: '214 Oak Street',
+          issue: 'AC is running but not cooling',
+          appointment_time: 'Tomorrow, 4:30 PM'
+        });
+      }
+
+      // Ctrl + Shift + R hides the demo card so you can rehearse again.
+      if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'r') {
+        const result = document.getElementById('booking-result');
+        if (result) result.classList.remove('visible');
+      }
+    });
+
     window.showBookingConfirmationUI = function(data){
       const result=document.getElementById('booking-result');
       const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value||'Not provided'};
