@@ -223,3 +223,17 @@
   .person-call-stack{width:62%;left:14px;top:18px}
   .person-note{left:16px;bottom:16px}
 }
+
+/* 2026-10-21 booking calendar balance */
+#calendar .booking-layout{
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  align-items:start;
+}
+#calendar .booking-copy,
+#calendar .calendar-card{
+  width:100%;
+}
+@media(max-width:980px){
+  #calendar .booking-layout{grid-template-columns:1fr}
+}
