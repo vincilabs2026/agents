@@ -304,3 +304,64 @@
   .booking-hero-art img{max-width:620px}
   .booking-hero-art .side-note{text-align:center;max-width:620px}
 }
+
+/* 2026-10-21 polish exact approved hero assets */
+.hero .hero-grid{
+  grid-template-columns:.82fr 1.18fr;
+  gap:34px;
+}
+.homepage-hero-image-wrap{
+  overflow:visible;
+  justify-content:center;
+}
+.homepage-hero-image{
+  width:115%;
+  max-width:790px;
+  margin-right:-7%;
+  border-radius:30px;
+  object-fit:contain;
+  box-shadow:0 30px 68px rgba(0,0,0,.24);
+}
+.booking-intro-visual{
+  position:relative;
+  margin-bottom:34px;
+  align-items:center;
+}
+.booking-hero-art{
+  position:static;
+}
+.booking-hero-art .side-note{
+  position:absolute;
+  right:4px;
+  bottom:-30px;
+  width:auto;
+  max-width:none;
+  margin:0;
+  padding:0;
+  text-align:right;
+  white-space:nowrap;
+  transform:none;
+}
+@media(max-width:1180px){
+  .homepage-hero-image{
+    width:108%;
+    max-width:720px;
+    margin-right:-3%;
+  }
+}
+@media(max-width:980px){
+  .hero .hero-grid{grid-template-columns:1fr}
+  .homepage-hero-image{
+    width:100%;
+    max-width:760px;
+    margin:8px auto 0;
+  }
+  .booking-intro-visual{margin-bottom:18px}
+  .booking-hero-art .side-note{
+    position:static;
+    width:100%;
+    margin-top:12px;
+    text-align:center;
+    white-space:normal;
+  }
+}
