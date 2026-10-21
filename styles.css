@@ -25,3 +25,22 @@
 .expect-step p{margin:0;color:#64737a;font-size:.9rem}
 @media(max-width:980px){.mockup-hero-image{margin:0 auto;max-width:650px}.demo-title span{white-space:normal}.person-call-stack{width:58%}}
 @media(max-width:620px){.hero .eyebrow{font-size:.82rem}.after-video-cta .btn{min-width:0;width:100%}.expect-step{border-right:0;border-bottom:1px solid #d9e9e8}.expect-step:last-child{border-bottom:0}.person-call-stack{width:70%}}
+
+/* 2026-10-21 hero + missed-call composition correction */
+.hero{padding:56px 0 24px}
+.hero .container{width:min(calc(100% - 40px),1450px)}
+.hero-grid{grid-template-columns:.86fr 1.14fr;gap:42px;align-items:center}
+.hero-visual{min-height:340px;display:flex;align-items:center;justify-content:center;overflow:visible}
+.mockup-hero-image{width:118%;max-width:760px;margin:0 -7% 0 0;border-radius:28px;transform:none;filter:drop-shadow(0 26px 42px rgba(0,0,0,.30))}
+.hero .actions{margin-top:24px}
+.hero .btn-primary{min-height:62px;padding:0 34px;font-size:1.08rem}
+.metrics{margin-top:26px;gap:16px}
+.metric{min-height:135px;padding:20px}
+.pain-visual.person-visual{background-size:contain;background-repeat:no-repeat;background-position:center right;background-color:#f4faf9;min-height:410px}
+.person-call-stack,.person-note{display:none!important}
+@media(max-width:980px){
+  .hero .container{width:min(calc(100% - 34px),900px)}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-visual{min-height:auto}
+  .mockup-hero-image{width:100%;max-width:700px;margin:0 auto}
+}
