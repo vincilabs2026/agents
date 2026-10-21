@@ -114,7 +114,3 @@
   .metrics{grid-template-columns:1fr}
   .metric{min-height:0}
 }
-
-/* high-res image asset rendering */
-.pain-visual.person-visual{background:none!important;min-height:0!important;box-shadow:none!important;display:flex!important;align-items:center;justify-content:center}
-.missed-hires-image{display:block;width:100%;max-width:490px;height:auto;border-radius:24px;box-shadow:0 18px 42px rgba(4,48,52,.12)}
