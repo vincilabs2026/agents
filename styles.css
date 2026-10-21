@@ -114,3 +114,112 @@
   .metrics{grid-template-columns:1fr}
   .metric{min-height:0}
 }
+
+/* Crisp homepage visuals - no embedded raster hero */
+.crisp-hero{
+  min-height:430px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:visible;
+}
+.crisp-hero .hero-device{
+  position:relative;
+  inset:auto;
+  width:100%;
+  max-width:620px;
+  min-height:390px;
+  transform:perspective(1100px) rotateY(-7deg) rotateX(2deg);
+  border-radius:30px;
+  padding:22px;
+  background:linear-gradient(155deg,#0b3337,#04191b 72%);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:-24px 30px 80px rgba(0,0,0,.34),0 0 50px rgba(25,221,209,.16);
+}
+.crisp-hero .hero-device:before{
+  content:"";
+  position:absolute;
+  inset:-13px 18px 18px -13px;
+  border:1px solid rgba(25,221,209,.30);
+  border-radius:32px;
+  z-index:-1;
+}
+.crisp-hero .device-grid{grid-template-columns:.82fr 1.18fr;gap:14px}
+.crisp-hero .phone-panel{min-height:310px}
+.crisp-hero .conversation{gap:10px}
+.crisp-hero .mini-card{padding:13px 14px}
+.crisp-hero .floating-badge{
+  right:-4px;
+  bottom:4px;
+  transform:rotate(2deg);
+}
+.pain-visual.person-visual{
+  position:relative;
+  min-height:420px;
+  display:block;
+  overflow:hidden;
+  padding:0;
+  background:#eef7f6!important;
+  border-radius:26px;
+  box-shadow:0 18px 44px rgba(4,48,52,.13);
+}
+.person-photo{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 34%;
+  display:block;
+}
+.person-shade{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(246,251,250,.98) 0%,rgba(246,251,250,.78) 34%,rgba(246,251,250,.18) 63%,rgba(246,251,250,0) 100%);
+}
+.person-call-stack{
+  display:grid!important;
+  position:absolute;
+  left:24px;
+  top:30px;
+  width:48%;
+  gap:12px;
+  z-index:2;
+}
+.person-call{
+  margin:0!important;
+  background:rgba(255,255,255,.97);
+  border-radius:14px;
+  padding:14px 16px;
+  border-left:5px solid #ff5d5d;
+  box-shadow:0 12px 28px rgba(0,0,0,.10);
+  color:#23343a;
+}
+.person-note{
+  display:block!important;
+  position:absolute;
+  left:28px;
+  bottom:28px;
+  z-index:2;
+  max-width:245px;
+  background:rgba(255,255,255,.94);
+  border-radius:12px;
+  padding:11px 14px;
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+  color:#31595c;
+  font-size:.9rem;
+  font-weight:900;
+  font-style:italic;
+}
+@media(max-width:980px){
+  .crisp-hero{min-height:400px}
+  .crisp-hero .hero-device{max-width:650px;transform:none}
+  .pain-visual.person-visual{max-width:570px;margin:0 auto}
+}
+@media(max-width:620px){
+  .crisp-hero .device-grid{grid-template-columns:1fr}
+  .crisp-hero .conversation{display:none}
+  .crisp-hero .hero-device{min-height:330px}
+  .person-call-stack{width:62%;left:14px;top:18px}
+  .person-note{left:16px;bottom:16px}
+}
