@@ -426,3 +426,112 @@
   .hero .metrics{grid-template-columns:1fr}
   .hero .metric{min-height:0}
 }
+
+/* 2026-10-21 bright integrated hero markup */
+.bright-hero{
+  min-height:430px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.bright-scene{
+  position:relative;
+  width:100%;
+  max-width:720px;
+  min-height:430px;
+  border-radius:34px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 82% 18%,rgba(255,255,255,.95),rgba(255,255,255,0) 28%),
+    linear-gradient(135deg,#f5ffff 0%,#dff8fb 48%,#eafdfb 100%);
+  box-shadow:0 28px 70px rgba(0,0,0,.18);
+  border:1px solid rgba(255,255,255,.7);
+}
+.phone-shell{
+  position:absolute;
+  left:22px;
+  top:24px;
+  width:205px;
+  height:360px;
+  border-radius:32px;
+  padding:20px 18px;
+  background:linear-gradient(160deg,#112e36,#06171d 75%);
+  color:#fff;
+  transform:rotate(-7deg);
+  box-shadow:0 22px 45px rgba(0,0,0,.30);
+}
+.phone-top{font-size:.7rem;opacity:.8}
+.phone-brand{text-align:center;margin-top:42px;font-size:1.25rem;font-weight:800}
+.call-time{text-align:center;font-size:.8rem;opacity:.72;margin-top:4px}
+.v-orb{
+  width:82px;height:82px;border-radius:50%;display:grid;place-items:center;
+  margin:22px auto 24px;font-size:2.3rem;font-weight:950;color:#12e4da;
+  border:3px solid #12e4da;box-shadow:0 0 24px rgba(18,228,218,.5) inset,0 0 20px rgba(18,228,218,.4);
+}
+.phone-tools{display:flex;justify-content:space-around;font-size:1.2rem;color:#e3ecee}
+.hangup{
+  width:56px;height:56px;border-radius:50%;display:grid;place-items:center;
+  margin:30px auto 0;background:#ff4d4d;transform:rotate(135deg);font-size:1.2rem
+}
+.chat-stack{
+  position:absolute;left:225px;top:28px;width:355px;display:grid;gap:13px;
+}
+.chat-bubble{
+  display:grid;grid-template-columns:42px 1fr;gap:11px;
+  background:rgba(255,255,255,.94);border-radius:18px;padding:14px 15px;
+  box-shadow:0 10px 22px rgba(29,91,98,.10);color:#223039;
+}
+.chat-bubble .avatar{
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  background:#ffd9c8;color:#8f3d2e;font-weight:900
+}
+.chat-bubble .avatar.teal{background:#24d4ca;color:#fff}
+.chat-bubble b{font-size:.95rem}
+.chat-bubble small{float:right;color:#a0abb0}
+.chat-bubble p{margin:5px 0 0;font-size:.83rem;line-height:1.35;color:#394b52}
+.slot-rail{
+  position:absolute;right:18px;top:88px;width:110px;display:grid;gap:12px;z-index:3
+}
+.calendar-symbol{width:46px;height:46px;margin:0 auto 4px;color:#23b9d7}
+.calendar-symbol svg,.booked-icon svg{width:100%;height:100%;stroke:currentColor;stroke-width:2;fill:none}
+.slot-rail span{
+  display:block;text-align:center;padding:10px 7px;border-radius:14px;
+  background:rgba(255,255,255,.86);color:#8aa1a8;font-weight:800
+}
+.slot-rail span.active{background:#0a8f87;color:#fff;box-shadow:0 8px 20px rgba(10,143,135,.25)}
+.booked-confirm{
+  position:absolute;left:255px;right:65px;bottom:20px;
+  display:grid;grid-template-columns:52px 1fr 42px;gap:12px;align-items:center;
+  background:#fff;border-radius:20px;padding:15px 18px;
+  box-shadow:0 16px 36px rgba(24,95,96,.16);color:#1d2d33
+}
+.booked-icon{
+  width:48px;height:48px;border-radius:14px;padding:10px;background:#77efaa;color:#0a8f66
+}
+.booked-confirm b{font-size:1.05rem}
+.booked-confirm p{margin:3px 0 0;color:#5c6d73;font-size:.84rem}
+.checkmark{
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  background:#0d9f93;color:#fff;font-weight:950;font-size:1.25rem
+}
+@media(max-width:1180px){
+  .bright-scene{max-width:650px}
+  .chat-stack{left:205px;width:320px}
+}
+@media(max-width:980px){
+  .bright-scene{max-width:720px;margin:0 auto}
+}
+@media(max-width:700px){
+  .bright-scene{min-height:390px}
+  .phone-shell{left:12px;width:180px;height:330px}
+  .chat-stack{left:175px;right:12px;width:auto}
+  .slot-rail{display:none}
+  .booked-confirm{left:190px;right:20px}
+}
+@media(max-width:540px){
+  .phone-shell{width:150px}
+  .chat-stack{left:145px}
+  .chat-bubble{grid-template-columns:32px 1fr;padding:10px}
+  .chat-bubble .avatar{width:30px;height:30px}
+  .booked-confirm{left:150px}
+}
