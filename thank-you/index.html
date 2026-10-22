@@ -1,6 +1,7 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thanks for Booking | Vinci</title><link rel="stylesheet" href="/styles.css"></head><body>
 <header><div class="container nav"><a class="brand" href="/"><span class="mark">V</span> Vinci</a><nav class="navlinks"><a href="/">Home</a><a href="/#how">How It Works</a><a href="/#industries">Who It’s For</a><a class="btn btn-secondary" href="/">← Back to Home</a></nav></div></header>
-<section class="confirm-hero"><div class="confetti"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="container"><div class="checkmark">✓</div><div class="eyebrow" style="color:#0b8e88">APPOINTMENT CONFIRMED</div><h1>Thank You!</h1><p class="sub" style="margin:14px auto 0">Your strategy call has been booked. We’re looking forward to speaking with you.</p><div class="confirm-card"><div class="confirm-item"><span class="confirm-ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg></span><div><b>Date & Time</b><div class="date-prominent" id="confirmedDateTime">See your calendar invite</div><small id="confirmedTimezone">Your exact local date and time are in the confirmation email.</small></div></div><div class="confirm-item"><span class="confirm-ico">🎥</span><div><b>Meeting Link</b><div class="date-prominent">Included in invite</div><small>Open the calendar event to join.</small></div></div><div class="confirm-item"><span class="confirm-ico">↻</span><div><b>Need to change it?</b><div class="date-prominent">Reschedule anytime</div><small>Use the link in your calendar invite.</small></div></div></div></div></section>
+<section class="confirm-hero"><div class="confetti"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="container"><div class="checkmark">✓</div><div class="eyebrow" style="color:#0b8e88">APPOINTMENT CONFIRMED</div><h1>Thank You!</h1><p class="sub" style="margin:14px auto 0">Your strategy call has been booked. We’re looking forward to speaking with you.</p>
+   <div class="thank-confirm-time" id="thankConfirmTime">See your calendar invite for the exact meeting time</div><div class="confirm-card"><div class="confirm-item"><span class="confirm-ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg></span><div><b>Date & Time</b><div class="date-prominent" id="confirmedDateTime">Meeting confirmed</div><small id="confirmedTimezone">Exact local time will appear above when supplied by Calendly.</small></div></div><div class="confirm-item"><span class="confirm-ico">🎥</span><div><b>Meeting Link</b><div class="date-prominent">Included in invite</div><small>Open the calendar event to join.</small></div></div><div class="confirm-item"><span class="confirm-ico">↻</span><div><b>Need to change it?</b><div class="date-prominent">Reschedule anytime</div><small>Use the link in your calendar invite.</small></div></div></div></div></section>
 <section class="section thank-video-section">
   <div class="container">
     <div class="thank-video-intro">
@@ -91,6 +92,10 @@
 
   if(target){
     target.textContent=dateText+' · '+timeText;
+  }
+  var prominent=document.getElementById('thankConfirmTime');
+  if(prominent){
+    prominent.textContent=dateText+' · '+timeText;
   }
   if(zone){
     var tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
