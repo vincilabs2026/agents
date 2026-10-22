@@ -6,11 +6,28 @@
 <div class="container trust-row"><div class="trust"><span class="trust-ico">✓</span><b>No obligation</b><br><small>Friendly, practical discussion.</small></div><div class="trust"><span class="trust-ico">◎</span><b>Tailored to your business</b><br><small>Focused on your calls, leads and bookings.</small></div><div class="trust"><span class="trust-ico">💡</span><b>Practical next steps</b><br><small>Clear recommendations after the call.</small></div></div></section>
 <footer class="footer"><div class="container footer-row"><div class="brand" style="color:#fff"><span class="mark">V</span> Vinci</div><div><a href="/">Home</a> · <a href="/booking/">Book</a></div></div></footer><script>function playDriveVideo(id){const f=document.getElementById(id);const i=f.querySelector('iframe');i.src=i.dataset.src+'?autoplay=1';f.classList.add('playing');f.querySelector('.video-poster').style.display='none';}</script>
 <script>
-window.addEventListener('message',function(e){
-  var d=e && e.data;
-  if(!d || typeof d.event!=='string') return;
-  if(d.event==='calendly.event_scheduled'){
-    window.location.href='/thank-you/';
+(function(){
+  function hasCalendlyEvent(d){
+    return d && typeof d.event==='string' && d.event.indexOf('calendly.')===0;
   }
-});
+
+  window.addEventListener('message',function(e){
+    var d=e && e.data;
+    if(!hasCalendlyEvent(d)) return;
+
+    try{
+      if(d.event==='calendly.date_and_time_selected'){
+        sessionStorage.setItem('vinciCalendlySelection', JSON.stringify(d));
+      }
+      if(d.event==='calendly.event_scheduled'){
+        sessionStorage.setItem('vinciCalendlyScheduled', JSON.stringify(d));
+        window.location.href='/thank-you/';
+      }
+    }catch(err){
+      if(d.event==='calendly.event_scheduled'){
+        window.location.href='/thank-you/';
+      }
+    }
+  });
+})();
 </script></body></html>
