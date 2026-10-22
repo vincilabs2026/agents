@@ -1264,3 +1264,48 @@
     grid-template-columns:1fr;
   }
 }
+
+/* 2026-10-22 thank-you video moved directly under confirmation */
+.thank-video-section{
+  padding-top:42px;
+}
+.thank-video-intro{
+  max-width:760px;
+  margin:0 auto 24px;
+  text-align:center;
+}
+.thank-video-intro h2{
+  margin-bottom:14px;
+}
+.thank-video-immediate{
+  max-width:980px;
+  margin:0 auto;
+}
+.thank-video-immediate .video-frame{
+  width:100%;
+}
+.thank-next{
+  max-width:980px;
+  margin:30px auto 0;
+}
+.thank-next .steps{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+}
+.thank-next .steps-title{
+  grid-column:1/-1;
+  text-align:center;
+  font-size:1.7rem;
+  margin-bottom:6px;
+}
+.thank-next .step{
+  min-height:150px;
+  padding:20px;
+}
+@media(max-width:900px){
+  .thank-next .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:620px){
+  .thank-next .steps{grid-template-columns:1fr}
+}
