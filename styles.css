@@ -1168,3 +1168,24 @@
     grid-template-columns:1fr;
   }
 }
+
+/* 2026-10-22 booking calendar conversion + panel spacing */
+#calendar .booking-copy .booking-panel-highlight{
+  color:#19ddd1;
+  font-weight:950;
+  white-space:nowrap;
+}
+#calendar .booking-copy .booking-points{
+  margin-top:24px !important;
+}
+#calendar .booking-copy{
+  justify-content:flex-start !important;
+}
+#calendar .calendar-card{
+  min-height:760px;
+}
+#calendar .calendly-inline-widget{
+  width:100%;
+  min-width:320px;
+  height:760px;
+}
