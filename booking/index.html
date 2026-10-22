@@ -11,20 +11,30 @@
     return d && typeof d.event==='string' && d.event.indexOf('calendly.')===0;
   }
 
-  window.addEventListener('message',function(e){
+  window.addEventListener('message',async function(e){
     var d=e && e.data;
     if(!hasCalendlyEvent(d)) return;
 
-    try{
-      if(d.event==='calendly.date_and_time_selected'){
-        sessionStorage.setItem('vinciCalendlySelection', JSON.stringify(d));
-      }
-      if(d.event==='calendly.event_scheduled'){
-        sessionStorage.setItem('vinciCalendlyScheduled', JSON.stringify(d));
-        window.location.href='/thank-you/';
-      }
-    }catch(err){
-      if(d.event==='calendly.event_scheduled'){
+    if(d.event==='calendly.event_scheduled'){
+      try{
+        var eventUri=d.payload && d.payload.event && d.payload.event.uri;
+        var inviteeUri=d.payload && d.payload.invitee && d.payload.invitee.uri;
+
+        if(eventUri){
+          var res=await fetch('/api/calendly-event',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({eventUri:eventUri,inviteeUri:inviteeUri||null})
+          });
+
+          if(res.ok){
+            var details=await res.json();
+            sessionStorage.setItem('vinciBookingDetails',JSON.stringify(details));
+          }
+        }
+      }catch(err){
+        console.error('Calendly detail lookup failed',err);
+      }finally{
         window.location.href='/thank-you/';
       }
     }

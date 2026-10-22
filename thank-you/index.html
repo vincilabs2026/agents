@@ -10,7 +10,13 @@
       <p class="sub">Watch this short video to know what happens next and how to get the most out of your strategy call.</p>
     </div>
     <div class="thank-video-immediate">
-      <div class="video-frame" id="thankVideo"><div class="video-poster" style="background-image:url('https://drive.google.com/thumbnail?id=1lpGOMxcTgspAgXgQKCVpbOFmxkR5fRT-&sz=w1600')" onclick="playDriveVideo('thankVideo')"><button class="custom-play" aria-label="Play video">▶</button><div class="poster-label">A quick message before your call</div>
+      <div class="video-frame" id="thankVideo">
+        <div class="video-poster" style="background-image:url('https://drive.google.com/thumbnail?id=1lpGOMxcTgspAgXgQKCVpbOFmxkR5fRT-&sz=w1600')" onclick="playDriveVideo('thankVideo')">
+          <button class="custom-play" aria-label="Play video">▶</button>
+          <div class="poster-label">A quick message before your call</div>
+        </div>
+        <iframe class="drive-video" data-src="https://drive.google.com/file/d/1lpGOMxcTgspAgXgQKCVpbOFmxkR5fRT-/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      </div>
     </div>
     <div class="thank-next">
       <div class="steps"><div class="steps-title">What Happens Next?</div><div class="step"><span class="stepnum">1</span><div><b>Watch this short video</b><p>Get a quick overview of what to expect and how to prepare.</p></div></div><div class="step"><span class="stepnum">2</span><div><b>Check your calendar invite</b><p>Save the meeting and confirm your local time.</p></div></div><div class="step"><span class="stepnum">3</span><div><b>Come ready to chat</b><p>Be ready to discuss how you currently handle calls, enquiries, follow-up, and bookings.</p></div></div><div class="step"><span class="stepnum">4</span><div><b>Leave with clear next steps</b><p>You’ll get practical recommendations whether or not you move forward.</p></div></div></div></div>
@@ -20,78 +26,55 @@
 <section class="section features"><div class="container"><div class="eyebrow" style="color:#0b8e88">WHAT WE’LL COVER</div><h2>A Focused Conversation About Your Business</h2><div class="industries" style="grid-template-columns:repeat(3,1fr)"><div class="industry"><span class="industry-ico" style="background:#ffecec;color:#e65050"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.9z"/></svg></span><b>Your Current Calls & Leads</b><p>How incoming enquiries are handled today.</p></div><div class="industry"><span class="industry-ico" style="background:#fff2dc;color:#db8a24"><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-8M22 19V2"/></svg></span><b>Where Bookings May Be Missed</b><p>After-hours gaps, slow follow-up, or unanswered calls.</p></div><div class="industry"><span class="industry-ico" style="background:#f0eaff;color:#7453d9">✦</span><b>How AI Could Help You Grow</b><p>Reception, follow-up, qualification, and appointment setting.</p></div></div></div></section>
 <footer class="footer"><div class="container footer-row"><div class="brand" style="color:#fff"><span class="mark">V</span> Vinci</div><div><a href="/">Home</a> · <a href="/booking/">Booking</a></div></div></footer><script>function playDriveVideo(id){const f=document.getElementById(id);const i=f.querySelector('iframe');i.src=i.dataset.src+'?autoplay=1';f.classList.add('playing');f.querySelector('.video-poster').style.display='none';}</script><script>
 (function(){
-  function collectDateStrings(value, out){
-    if(value==null) return;
-    if(typeof value==='string'){
-      if(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(value)) out.push(value);
-      return;
-    }
-    if(Array.isArray(value)){
-      value.forEach(function(v){ collectDateStrings(v,out); });
-      return;
-    }
-    if(typeof value==='object'){
-      Object.keys(value).forEach(function(k){ collectDateStrings(value[k],out); });
-    }
+  function playDriveVideo(id){
+    const f=document.getElementById(id);
+    const i=f.querySelector('iframe');
+    i.src=i.dataset.src+'?autoplay=1';
+    f.classList.add('playing');
+    f.querySelector('.video-poster').style.display='none';
   }
+  window.playDriveVideo=playDriveVideo;
 
-  function readStored(key){
+  function readBooking(){
     try{
-      var raw=sessionStorage.getItem(key);
+      var raw=sessionStorage.getItem('vinciBookingDetails');
       return raw ? JSON.parse(raw) : null;
     }catch(e){ return null; }
   }
 
-  var selection=readStored('vinciCalendlySelection');
-  var scheduled=readStored('vinciCalendlyScheduled');
-  var dates=[];
-  collectDateStrings(selection,dates);
-  collectDateStrings(scheduled,dates);
+  function formatDateTime(startValue,endValue){
+    var start=new Date(startValue);
+    var end=endValue ? new Date(endValue) : null;
+    if(isNaN(start.getTime())) return null;
 
-  if(!dates.length) return;
-
-  var parsed=dates
-    .map(function(v){ return new Date(v); })
-    .filter(function(d){ return !isNaN(d.getTime()); })
-    .sort(function(a,b){ return a-b; });
-
-  if(!parsed.length) return;
-
-  var start=parsed[0];
-  var end=null;
-  for(var i=1;i<parsed.length;i++){
-    if(parsed[i].getTime()>start.getTime()){
-      end=parsed[i];
-      break;
-    }
-  }
-
-  var dateText=start.toLocaleDateString(undefined,{
-    weekday:'long',
-    year:'numeric',
-    month:'long',
-    day:'numeric'
-  });
-
-  var startTime=start.toLocaleTimeString(undefined,{
-    hour:'numeric',
-    minute:'2-digit'
-  });
-
-  var timeText=startTime;
-  if(end && (end-start)<=1000*60*180){
-    var endTime=end.toLocaleTimeString(undefined,{
-      hour:'numeric',
-      minute:'2-digit'
+    var date=start.toLocaleDateString(undefined,{
+      weekday:'long',
+      year:'numeric',
+      month:'long',
+      day:'numeric'
     });
-    timeText=startTime+' – '+endTime;
+    var startTime=start.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});
+    var text=date+' · '+startTime;
+
+    if(end && !isNaN(end.getTime()) && end>start){
+      text+=' – '+end.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});
+    }
+    return text;
   }
 
-  var target=document.getElementById('confirmedDateTime');
-  
+  var details=readBooking();
+  if(!details) return;
 
-  if(target){
-    target.innerHTML=dateText+' · '+timeText+' <span>Meeting Link in calendar invite</span>';
+  var target=document.getElementById('thankConfirmTime');
+  if(!target) return;
+
+  var when=formatDateTime(details.startTime,details.endTime);
+  if(!when) return;
+
+  if(details.meetingLink){
+    target.innerHTML=when+' · <a class="meeting-link-inline" href="'+details.meetingLink+'" target="_blank" rel="noopener">Meeting Link</a>';
+  }else{
+    target.innerHTML=when+' · <span>Meeting Link in calendar invite</span>';
   }
 })();
 </script></body></html>
