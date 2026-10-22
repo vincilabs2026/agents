@@ -1039,3 +1039,31 @@
   .person-call-stack{width:66%;left:14px;top:18px}
   .person-note{left:16px;bottom:16px}
 }
+
+/* 2026-10-22 booking-page readability + demo annotation correction */
+.booking-hero-art .side-note{
+  color:#0b7e79;
+  font-weight:900;
+}
+#calendar .booking-copy{
+  color:#fff !important;
+}
+#calendar .booking-copy .eyebrow{
+  color:#19ddd1 !important;
+}
+#calendar .booking-copy h2{
+  color:#fff !important;
+}
+#calendar .booking-copy p{
+  color:rgba(255,255,255,.84) !important;
+}
+#calendar .booking-copy .booking-point b{
+  color:#fff !important;
+}
+#calendar .booking-copy .booking-point small{
+  color:rgba(255,255,255,.72) !important;
+}
+#calendar .booking-copy .point-ico{
+  color:#fff !important;
+  background:rgba(255,255,255,.11) !important;
+}
