@@ -934,3 +934,108 @@
     margin:0 auto;
   }
 }
+
+/* 2026-10-22 navigation, heading emphasis, missed-calls visual, booking hero highlights */
+
+/* Stronger homepage heading hierarchy */
+.section h2{
+  font-size:clamp(3rem,5.25vw,5rem);
+  line-height:.94;
+  letter-spacing:-.06em;
+  font-weight:950;
+  color:#102229;
+  max-width:980px;
+}
+.demo-band .demo-title,
+.final-cta h2{
+  font-weight:950;
+  letter-spacing:-.055em;
+}
+.features h2{
+  max-width:760px;
+}
+
+/* Missed-call visual: larger and more immersive */
+.pain-grid{
+  grid-template-columns:.92fr 1.08fr;
+  gap:58px;
+  align-items:stretch;
+}
+.pain-grid > div:first-child{
+  align-self:center;
+}
+.pain-visual.person-visual{
+  width:100%;
+  max-width:none;
+  min-height:520px;
+  height:100%;
+  justify-self:stretch;
+  border-radius:28px;
+  box-shadow:0 24px 54px rgba(4,48,52,.14);
+}
+.person-photo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+}
+.person-shade{
+  background:linear-gradient(
+    90deg,
+    rgba(246,251,250,.96) 0%,
+    rgba(246,251,250,.78) 27%,
+    rgba(246,251,250,.30) 48%,
+    rgba(246,251,250,0) 72%
+  );
+}
+.person-call-stack{
+  left:24px;
+  top:34px;
+  width:43%;
+  gap:13px;
+}
+.person-note{
+  left:28px;
+  bottom:26px;
+  max-width:265px;
+}
+
+/* Booking-page emphasis */
+.page-hero h1 .booking-highlight{
+  color:#0a9e98;
+  font-weight:950;
+  position:relative;
+  white-space:nowrap;
+}
+.page-hero h1 .booking-highlight::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-4px;
+  height:6px;
+  border-radius:999px;
+  background:rgba(10,158,152,.16);
+  z-index:-1;
+}
+
+@media(max-width:980px){
+  .pain-grid{
+    grid-template-columns:1fr;
+    gap:36px;
+  }
+  .pain-visual.person-visual{
+    min-height:460px;
+    max-width:720px;
+    margin:0 auto;
+  }
+  .person-call-stack{width:52%}
+}
+@media(max-width:620px){
+  .section h2{
+    font-size:clamp(2.5rem,11vw,3.5rem);
+  }
+  .pain-visual.person-visual{min-height:410px}
+  .person-call-stack{width:66%;left:14px;top:18px}
+  .person-note{left:16px;bottom:16px}
+}
