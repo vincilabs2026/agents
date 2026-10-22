@@ -1361,3 +1361,24 @@
     padding:0 14px;
   }
 }
+
+/* 2026-10-22 simplify thank-you confirmation */
+.confirm-card{
+  display:none !important;
+}
+.thank-confirm-time{
+  margin-top:18px;
+  font-size:1.2rem;
+  font-weight:800;
+  color:#25343a;
+}
+.thank-confirm-time span{
+  color:#0b8e88;
+  font-weight:950;
+  text-decoration:underline;
+  text-decoration-thickness:2px;
+  text-underline-offset:4px;
+}
+.confirm-hero{
+  padding-bottom:24px;
+}
